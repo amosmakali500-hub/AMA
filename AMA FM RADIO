@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMA FM RADIO</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4; }
+    header { background:#111; color:white; padding:20px; text-align:center; }
+    nav { background:#222; padding:10px; text-align:center; }
+    nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+    section { padding:40px; max-width:900px; margin:auto; }
+    .logo { width:150px; }
+    .btn-radio { padding:12px 20px; background:#ff6600; color:white; border:none; cursor:pointer; font-size:16px; margin-top:20px; }
+    .btn-radio.off { background:#444; }
+    #playerBox { margin-top:25px; display:none; }
+    footer { background:#111; color:white; text-align:center; padding:15px; margin-top:40px; }
+  </style>
+  <style>
+    .lang-switch { position: fixed; top: 20px; right: 20px; }
+    .lang-switch button { padding: 8px 14px; margin-left:5px; border:none; cursor:pointer; background:#333; color:#fff; border-radius:6px; }
+    .lang-switch button.active { background:#ff8800; }
+    body.classic { background:#101820; color:#f2f2f2; }
+    header.classic { background:#0d1b2a; }
+    nav.classic { background:#1b263b; }
+    .btn-radio.classic { background:#ff8800; }
+  </style>
+</head>
+<body class="classic">
+  <div class="lang-switch">
+    <button id="swBtn" class="active">SW</button>
+    <button id="enBtn">EN</button>
+  </div>
+  <header>
+    <img src="your-radio-logo.png" alt="AMA FM Logo" class="logo">
+    <h1>AMA FM RADIO</h1>
+    <p>Sauti ya Kizazi Kipya</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">Kuhusu</a>
+    <a href="#shows">Vipindi</a>
+    <a href="#contact">Mawasiliano</a>
+  </nav>
+
+  <section id="home">
+    <h2>Karibu AMA FM Radio</h2>
+    <p>
+      Ama FM ni kituo cha redio kinachojikita katika kuelimisha na kuwawezesha vijana kupitia vipindi vya teknolojia,
+      mitandao na ujuzi muhimu kwa maendeleo yao. Tunatoa maudhui bunifu yanayochochea ubunifu, fikra mpya na matumizi
+      sahihi ya teknolojia katika maisha ya kila siku.
+    </p>
+
+    <button id="radioBtn" class="btn-radio">▶ Washa Radio</button>
+
+    <div id="playerBox">
+      <iframe src="https://zeno.fm/radio/ama-fm/" width="100%" height="300" frameborder="0" allow="autoplay"></iframe>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>Kuhusu AMA FM</h2>
+    <p>
+      AMA FM Radio ni redio ya mtandaoni inayolenga kuwawezesha vijana kwa maarifa ya teknolojia, ubunifu na matumizi bora
+      ya mitandao. Kupitia wataalamu na watangazaji makini, tunawafikia vijana kwa elimu, burudani na mjadala wenye tija.
+    </p>
+    <p>
+      <strong>Dira:</strong> Kuwa redio bora ya kidigitali inayopaza sauti ya vijana na kuwaandaa kwa mustakabali wa teknolojia.
+    </p>
+    <p>
+      <strong>Dhamira:</strong> Kuwapa vijana elimu, ujuzi na nafasi za kushiriki katika ulimwengu wa kisasa wa digitali.
+    </p>
+  </section>
+
+  <section id="shows">
+    <h2>Vipindi Vyetu</h2>
+    <ul>
+      <li><strong>Tech Zone</strong> – Habari za teknolojia, AI, vifaa vipya na fursa za digitali.</li>
+      <li><strong>Youth Power Talk</strong> – Majadiliano ya changamoto, mafanikio na maendeleo ya vijana.</li>
+      <li><strong>Digital Skills Hour</strong> – Elimu ya mitandao, content creation na online safety.</li>
+      <li><strong>Ama Gospel Morning</strong> – Malezi, maadili na mafundisho ya imani.</li>
+      <li><strong>Weekend Creators</strong> – Muziki, burudani na ubunifu.</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Mawasiliano</h2>
+    <p><strong>Simu:</strong> 0745 840 620</p>
+    <p><strong>Email:</strong> weka-email-yako@example.com</p>
+    <p><strong>Mahali:</strong> Online – Tanzania</p>
+  </section>
+
+  <footer>
+    <p>© 2025 AMA FM RADIO | Sauti ya Kizazi Kipya</p>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('radioBtn');
+    const player = document.getElementById('playerBox');
+
+    let isPlaying = false;
+
+    btn.onclick = () => {
+      isPlaying = !isPlaying;
+
+      if (isPlaying) {
+        player.style.display = "block";
+        btn.textContent = "⏹ Zima Radio";
+        btn.classList.remove("off");
+      } else {
+        player.style.display = "none";
+        btn.textContent = "▶ Washa Radio";
+        btn.classList.add("off");
+      }
+    }
+  </script>
+  <script>
+    const swBtn = document.getElementById('swBtn');
+    const enBtn = document.getElementById('enBtn');
+    const swElements = document.querySelectorAll('[lang="sw"]');
+    const enElements = document.querySelectorAll('[lang="en"]');
+
+    function setLanguage(lang) {
+      if (lang === 'sw') {
+        swElements.forEach(el => el.style.display = 'block');
+        enElements.forEach(el => el.style.display = 'none');
+        swBtn.classList.add('active');
+        enBtn.classList.remove('active');
+      } else {
+        swElements.forEach(el => el.style.display = 'none');
+        enElements.forEach(el => el.style.display = 'block');
+        enBtn.classList.add('active');
+        swBtn.classList.remove('active');
+      }
+    }
+
+    swBtn.onclick = () => setLanguage('sw');
+    enBtn.onclick = () => setLanguage('en');
+    setLanguage('sw');
+  </script>
+</body>
+</html>
